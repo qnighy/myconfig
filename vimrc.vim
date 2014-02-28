@@ -1,3 +1,10 @@
+if has("win32")
+  if $LANG ==? "ja"
+    let $LANG='ja_JP.UTF-8'
+  endif
+  set encoding=utf-8
+endif
+
 let &runtimepath=expand("<sfile>:p:h")."/vim,".expand("<sfile>:p:h")."/vim/after,".&runtimepath
 let &runtimepath=expand("<sfile>:p:h")."/vim/bundle/vim-pathogen,".&runtimepath
 
@@ -33,11 +40,7 @@ set magic
 syntax on
 set list
 set listchars=tab:>\-,trail:-
-if has("unix")
-  let &listchars = &listchars . ",eol:\xab"
-elseif has("win32")
-  let &listchars = &listchars . ",eol:<"
-endif
+let &listchars = &listchars . ",eol:\xab"
 highlight NonText guifg=lightblue
 
 set whichwrap=b,s,h,l,<,>,[,]
