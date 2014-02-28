@@ -11,7 +11,8 @@
 ; (standard-display-ascii ?\t ">-------")
 (setq backup-directory-alist '(("" . "~/tmp")))
 
-(require 'anything-config)
+(add-to-list 'load-path (concat myconfig-site-lisp "/helm"))
+(require 'helm-config)
 (require 'jaspace)
 (setq jaspace-alternate-eol-string "\xab\n")
 (setq jaspace-highlight-tabs t)

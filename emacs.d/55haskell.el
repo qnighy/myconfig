@@ -1,5 +1,3 @@
-(load "haskell-mode/haskell-site-file")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-(add-hook 'haskell-mode-hook 'font-lock-mode)
-(add-hook 'haskell-mode-hook 'imenu-add-menubar-index)
+(add-to-list 'load-path (concat myconfig-site-lisp "/haskell-mode"))
+(require 'haskell-mode-autoloads)
+(add-to-list 'Info-default-directory-list (concat myconfig-site-lisp "/haskell-mode"))
