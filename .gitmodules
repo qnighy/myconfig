@@ -1,0 +1,30 @@
+[submodule "vim/bundle/AsyncCommand"]
+	path = vim/bundle/AsyncCommand
+	url = https://github.com/pydave/AsyncCommand.git
+[submodule "vim/bundle/coq.vim"]
+	path = vim/bundle/coq.vim
+	url = https://github.com/qnighy/coq.vim.git
+[submodule "vim/bundle/flymaker"]
+	path = vim/bundle/flymaker
+	url = https://github.com/vim-scripts/flymaker.git
+[submodule "vim/bundle/fsharp-vim"]
+	path = vim/bundle/fsharp-vim
+	url = https://github.com/kongo2002/fsharp-vim.git
+[submodule "vim/bundle/vim-j"]
+	path = vim/bundle/vim-j
+	url = https://github.com/guersam/vim-j.git
+[submodule "vim/bundle/vim-json"]
+	path = vim/bundle/vim-json
+	url = https://github.com/elzr/vim-json
+[submodule "vim/bundle/rust.vim"]
+	path = vim/bundle/rust.vim
+	url = https://github.com/wting/rust.vim
+[submodule "vim/bundle/vim-scala"]
+	path = vim/bundle/vim-scala
+	url = https://github.com/derekwyatt/vim-scala
+[submodule "vim/bundle/vim-pathogen"]
+	path = vim/bundle/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "vim/bundle/llvm.vim"]
+	path = vim/bundle/llvm.vim
+	url = https://github.com/Superbil/llvm.vim.git
