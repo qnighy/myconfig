@@ -27,7 +27,7 @@
 	url = https://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/llvm.vim"]
 	path = vim/bundle/llvm.vim
-	url = https://github.com/Superbil/llvm.vim.git
+	url = https://github.com/qnighy/llvm.vim.git
 [submodule "vim/bundle/CoqIDE"]
 	path = vim/bundle/CoqIDE
 	url = https://github.com/vim-scripts/CoqIDE.git
