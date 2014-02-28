@@ -28,3 +28,12 @@
 [submodule "vim/bundle/CoqIDE"]
 	path = vim/bundle/CoqIDE
 	url = https://github.com/vim-scripts/CoqIDE.git
+[submodule "site-lisp/scala-mode2"]
+	path = site-lisp/scala-mode2
+	url = https://github.com/hvesalai/scala-mode2.git
+[submodule "site-lisp/proofgeneral"]
+	path = site-lisp/proofgeneral
+	url = https://github.com/emacsattic/proofgeneral.git
+[submodule "site-lisp/haskell-mode"]
+	path = site-lisp/haskell-mode
+	url = https://github.com/haskell/haskell-mode.git
