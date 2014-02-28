@@ -28,3 +28,6 @@
 [submodule "vim/bundle/llvm.vim"]
 	path = vim/bundle/llvm.vim
 	url = https://github.com/Superbil/llvm.vim.git
+[submodule "vim/bundle/CoqIDE"]
+	path = vim/bundle/CoqIDE
+	url = https://github.com/vim-scripts/CoqIDE.git
