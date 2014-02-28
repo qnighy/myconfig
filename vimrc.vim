@@ -73,13 +73,7 @@ set guioptions=abcriL
 
 set shortmess=axtToOI
 
-au BufRead,BufNewFile *.ijx set filetype=j
-au BufRead,BufNewFile *.ijs set filetype=j
-au BufRead,BufNewFile *.scala set filetype=scala
 au BufRead,BufNewFile *.md set filetype=markdown
-" au BufRead,BufNewFile tls-state.txt set filetype=state-machine
-
-" command Hoge :let b:eruby_subtype="ruby"
 
 " let c_no_curly_error=1
 
