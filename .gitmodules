@@ -40,3 +40,6 @@
 [submodule "site-lisp/helm"]
 	path = site-lisp/helm
 	url = https://github.com/emacs-helm/helm.git
+[submodule "site-lisp/evil"]
+	path = site-lisp/evil
+	url = git://gitorious.org/evil/evil.git
