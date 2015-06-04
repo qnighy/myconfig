@@ -61,3 +61,6 @@
 [submodule "vim/bundle/vim-latex"]
 	path = vim/bundle/vim-latex
 	url = https://github.com/lervag/vim-latex.git
+[submodule "vim/bundle/glsl.vim"]
+	path = vim/bundle/glsl.vim
+	url = https://github.com/beyondmarc/glsl.vim
