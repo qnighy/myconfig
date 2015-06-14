@@ -42,7 +42,7 @@
 	url = https://github.com/emacs-helm/helm.git
 [submodule "site-lisp/evil"]
 	path = site-lisp/evil
-	url = git://gitorious.org/evil/evil.git
+	url = https://github.com/emacsmirror/evil.git
 [submodule "vim/bundle/neocomplcache.vim"]
 	path = vim/bundle/neocomplcache.vim
 	url = https://github.com/Shougo/neocomplcache.vim.git
