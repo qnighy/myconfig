@@ -113,3 +113,7 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+autocmd BufNewFile,BufRead *.ll setlocal ft=llvm
+autocmd FileType rust setlocal sts=4 sw=4 et
+autocmd FileType python setlocal sts=4 sw=4 et
