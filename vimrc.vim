@@ -13,6 +13,7 @@ let &runtimepath=expand("<sfile>:p:h")."/vim,".expand("<sfile>:p:h")."/vim/after
 let &runtimepath=expand("<sfile>:p:h")."/vim/bundle/vim-pathogen,".&runtimepath
 
 call pathogen#infect()
+Helptags
 
 set nocompatible
 
