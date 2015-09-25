@@ -5,6 +5,10 @@ if has("win32")
   set encoding=utf-8
 endif
 
+if !has('clientserver')
+  let g:loaded_asynccommand = 0
+endif
+
 let &runtimepath=expand("<sfile>:p:h")."/vim,".expand("<sfile>:p:h")."/vim/after,".&runtimepath
 let &runtimepath=expand("<sfile>:p:h")."/vim/bundle/vim-pathogen,".&runtimepath
 
