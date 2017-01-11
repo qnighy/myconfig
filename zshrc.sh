@@ -83,11 +83,12 @@ bindkey "^[[1;5B" history-beginning-search-forward-end
 # ::terminal title
 case "${TERM}" in
 kterm*|xterm|rxvt|cygwin)
-    precmd() {
+    precmd_terminal_title() {
         #echo -ne "\e]0;${USER}@${HOST%%.*}:${PWD}\a"
         wdhome=$(pwd|awk "{sub(\"^${HOME}\",\"~\",\$1);print \$1}")
         echo -ne "\e]0;Z>${wdhome}(${USER}@${HOST%%.*})\a"
     }
+    add-zsh-hook precmd precmd_terminal_title
     ;;
 esac
 
