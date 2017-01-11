@@ -169,24 +169,29 @@ setopt nobeep
 setopt multios
 
 # ::aliases
-alias RELOAD="source ~/.zshrc"
-alias where="whence -ca"
-if [ "$TERM" = "dumb" ]; then
-  alias ls="ls -F"
+if [[ $TERM = dumb ]]; then
+  # Indicate filetypes using symbols.
+  alias ls="ls -h -F"
 else
-  eval "`dircolors -b`"
-  alias ls="ls -h --color=auto"
-  alias sudols="sudo ls -h --color=auto"
-  alias sudoldir="sudo ls --color=auto -aplh"
-  alias la="ls -ha"
-  alias lf="ls -hF"
-  alias ll="ls -hl"
-  alias ldir="ls -aplh --color=auto"
+  case "${OSTYPE}" in
+    linux-gnu|cygwin|msys)
+      # Indicate filetypes using colors. (for GNU utils)
+      eval "`dircolors -b`"
+      alias ls="ls -h --color=auto"
+      ;;
+    darwin*|freebsd)
+      # Indicate filetypes using colors. (for BSD utils)
+      alias ls="ls -h -G"
+      ;;
+    *)
+      # Indicate filetypes using symbols.
+      alias ls="ls -h -F"
+      ;;
+  esac
 fi
+# human-readable outputs for du and dh
 alias du="du -h"
-alias df="LANG=C df -h"
-alias su="su -l"
-alias cd..="cd .."
+alias df="df -h"
 
 # ::history setting
 HISTFILE=~/.zsh_history
