@@ -117,10 +117,8 @@ precmd_rbenv_info() {
 }
 add-zsh-hook precmd precmd_rbenv_info
 
-# completion setting
+# Initialize completion.
 compinit
-# predict completion setting
-# predict-on
 
 # define widgets which invoke the function 'history-search-end'.
 # These are similar to history-beginning-search-{back,for}ward, but they move the cursor to the end of the line.
@@ -204,20 +202,24 @@ unsetopt beep
 if [[ $TERM = dumb ]]; then
   # Indicate filetypes using symbols.
   alias ls="ls -h -F"
+  zstyle ':completion:*' list-colors ''
 else
   case "${OSTYPE}" in
     linux-gnu|cygwin|msys)
       # Indicate filetypes using colors. (for GNU utils)
       eval "`dircolors -b`"
       alias ls="ls -h --color=auto"
+      zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
       ;;
     darwin*|freebsd*)
       # Indicate filetypes using colors. (for BSD utils)
       alias ls="ls -h -G"
+      zstyle ':completion:*' list-colors ''
       ;;
     *)
       # Indicate filetypes using symbols.
       alias ls="ls -h -F"
+      zstyle ':completion:*' list-colors ''
       ;;
   esac
 fi
@@ -230,8 +232,6 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=10000000000
 
-zstyle ':completion:*' list-colors ''
-
 # ::set default editor
 for edt in vim vi
 do
@@ -241,19 +241,6 @@ do
         break
     fi
 done
-
-if [ -d ~/.zsh_fun ]
-then
-    function rcomp() {
-        local f
-        f=(~/.zsh_fun/*(:t))
-        unfunction $f:t 2> /dev/null
-        autoload -U $f:t
-    }
-
-    fpath=(~/.zsh_fun $fpath)
-    autoload -U ~/.zsh_fun/*(:t)
-fi
 
 if [[ -f /etc/zsh_command_not_found ]]; then
   . /etc/zsh_command_not_found || true
