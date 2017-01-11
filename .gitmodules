@@ -76,3 +76,6 @@
 [submodule "vim/bundle/typescript-vim"]
 	path = vim/bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "zsh-completions"]
+	path = zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git

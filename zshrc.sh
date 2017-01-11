@@ -117,6 +117,9 @@ precmd_rbenv_info() {
 }
 add-zsh-hook precmd precmd_rbenv_info
 
+# Enable zsh-completions.
+fpath=("$0:A:h"/zsh-completions/src $fpath)
+
 # Initialize completion.
 compinit
 
