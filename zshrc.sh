@@ -13,6 +13,7 @@ setopt prompt_subst
 # PS1: usual prompt string
 # %B ... %b = boldface
 # %F{color} ... %f = color
+# ${ZSH_HOST_EMBLEM:green} = variable $ZSH_HOST_EMBLEM, defaults to green
 # %n = username
 # %M = full host name
 # %~ = cwd, with home replaced with ~
@@ -24,8 +25,8 @@ setopt prompt_subst
 # %(?.. (status %?%)) = show status number when nonzero
 # %(?..%S%F{red}) ... %(?..%f%s) = make the prompt char red and standout when nonzero status
 # %# = # for root and % for non-root
-PS1='%B%F{blue}%n@%M:%b%f%~${rbenv_info_msg_0_}${pyenv_info_msg_0_}${vcs_info_msg_0_}%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
-%(?..%S%F{red})%#%(?..%f%s) '
+PS1="%B%F{${ZSH_HOST_EMBLEM-green}}%n@%M:%b%f%~\${rbenv_info_msg_0_}\${pyenv_info_msg_0_}\${vcs_info_msg_0_}%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
+%(?..%S%F{red})%#%(?..%f%s) "
 # RPS1: right-hand-side counterpart of PS1
 # %F{color} ... %f = color
 # %D{...} = current date time
