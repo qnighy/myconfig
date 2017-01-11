@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 # these functions are autoloaded at the first call.
+autoload -Uz add-zsh-hook
 autoload -Uz compinit
 autoload -Uz predict-on
 autoload -Uz history-search-end
@@ -23,7 +24,7 @@ setopt prompt_subst
 # %(?.. (status %?%)) = show status number when nonzero
 # %(?..%S%F{red}) ... %(?..%f%s) = make the prompt char red and standout when nonzero status
 # %# = # for root and % for non-root
-PS1='%B%F{blue}%n@%M:%b%f%~%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
+PS1='%B%F{blue}%n@%M:%b%f%~${vcs_info_msg_0_}%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
 %(?..%S%F{red})%#%(?..%f%s) '
 # RPS1: right-hand-side counterpart of PS1
 # %F{color} ... %f = color
@@ -42,15 +43,34 @@ PS3='?# '
 # %N = the name of the script
 # %i = the line number in the script
 PS4='+%N:%i>'
+# vcs_info formats: default format vcs_info
+# %b = branch information
+# %c = information about staged changes
+# %u = information about unstaged changes
+zstyle ':vcs_info:*' formats ' %F{green}%c%u[%b]%f'
+# vcs_info actionformats: format used when some action is needed
+# %a = action needed
+zstyle ':vcs_info:*' actionformats ' %F{red}%c%u[%b|%a]%f'
+# vcs_info check-for-changes: dig into repositories for changes (maybe it costs)
+zstyle ':vcs_info:*' check-for-changes true
+# vcs_info stagedstr: format for staged changes
+zstyle ':vcs_info:*' stagedstr '%F{yellow}!'
+# vcs_info unstagedstr: format for unstaged changes
+zstyle ':vcs_info:*' unstagedstr '%F{red}+'
 if [[ $TERM = dumb ]]; then
   # Use simplified version in dumb terminal.
-  PS1='%n@%M:%~%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
+  PS1='%n@%M:%~${vcs_info_msg_0_}%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
 %(?..[!])%# '
   RPS1=''
   PS2='%_> '
   RPS2=''
   PS3='?# '
   PS4='+%N:%i>'
+  zstyle ':vcs_info:*' formats ' %c%u[%b]'
+  zstyle ':vcs_info:*' actionformats ' %c%u[%b|%a]'
+  zstyle ':vcs_info:*' check-for-changes true
+  zstyle ':vcs_info:*' stagedstr '!'
+  zstyle ':vcs_info:*' unstagedstr '+'
 elif [[ -n "${MC_SID-}" ]]; then
   # Use one-line version in midnight commander.
   PS1='%~:%(?..[!])%# '
@@ -59,7 +79,14 @@ elif [[ -n "${MC_SID-}" ]]; then
   RPS2=''
   PS3='?# '
   PS4='+%N:%i>'
+  zstyle ':vcs_info:*' check-for-changes false
 fi
+
+# register precmd to show VCS information on the prompt
+precmd_vcs_info() {
+  vcs_info
+}
+add-zsh-hook precmd precmd_vcs_info
 
 # complement setting
 compinit
