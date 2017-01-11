@@ -117,9 +117,9 @@ precmd_rbenv_info() {
 }
 add-zsh-hook precmd precmd_rbenv_info
 
-# complement setting
+# completion setting
 compinit
-# predict complement setting
+# predict completion setting
 # predict-on
 # history search
 zle -N history-beginning-search-backward-end history-search-end
