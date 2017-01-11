@@ -121,24 +121,53 @@ add-zsh-hook precmd precmd_rbenv_info
 compinit
 # predict completion setting
 # predict-on
-# history search
+
+# define widgets which invoke the function 'history-search-end'.
+# These are similar to history-beginning-search-{back,for}ward, but they move the cursor to the end of the line.
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
-# zed
 
-# ::keybind
+# See http://invisible-island.net/xterm/ctlseqs/ctlseqs.html for xterm escape sequences.
+# SS3 H = Home
 bindkey "^[OH" beginning-of-line
-bindkey "^[[1;5D" beginning-of-line
+# CSI 1 ~ = Home
 bindkey "^[[1~" beginning-of-line
+# CSI 1 5 D = Ctrl+Left
+bindkey "^[[1;5D" beginning-of-line
+# SS3 F = End
 bindkey "^[OF" end-of-line
-bindkey "^[[1;5C" end-of-line
+# CSI 4 ~ = End
 bindkey "^[[4~" end-of-line
+# CSI 1 5 C = Ctrl+Right
+bindkey "^[[1;5C" end-of-line
+# Just Ctrl-P
 bindkey "^P" history-beginning-search-backward-end
+# CSI 5 ~ = PageUp
 bindkey "^[[5~" history-beginning-search-backward-end
+# CSI 1 5 A = Ctrl+Up
 bindkey "^[[1;5A" history-beginning-search-backward-end
+# Just Ctrl-N
 bindkey "^N" history-beginning-search-forward-end
+# CSI 6 ~ = PageDown
 bindkey "^[[6~" history-beginning-search-forward-end
+# CSI 1 5 B = Ctrl+Down
 bindkey "^[[1;5B" history-beginning-search-forward-end
+
+# Redefine some inconvenient vi keybinds
+# vicmd ^H := backward-char (previous: vi-backward-char)
+bindkey -a "^H" backward-char
+# vicmd h := backward-char (previous: vi-backward-char)
+bindkey -a "h" backward-char
+# vicmd ^? := backward-char (previous: vi-backward-char)
+bindkey -a "^?" backward-char
+# viins CSI D = Left := backward-char (previous: vi-backward-char)
+bindkey -v "^[[D" backward-char
+# viins ^H = backspace := backward-delete-char (previous: vi-backward-delete-char)
+bindkey -v "^H" backward-delete-char
+# viins ^? = backspace := backward-delete-char (previous: vi-backward-delete-char)
+bindkey -v "^?" backward-delete-char
+# viins ^W := backward-kill-word (previous: vi-backward-kill-word)
+bindkey -v "^W" backward-kill-word
 
 # ::terminal title
 case "${TERM}" in
