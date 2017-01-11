@@ -152,21 +152,24 @@ kterm*|xterm|rxvt|cygwin)
     ;;
 esac
 
-# ::set options
+# Enable comments in interactive shell.
+setopt interactive_comments
+# Enable negation (^x), subtraction (x^y), repetition (x#, x##) in file expantion.
 setopt extended_glob
+# Record timestamp in zsh_history.
 setopt extended_history
+# Do not record space-prefixed commands into zsh_history.
 setopt hist_ignore_space
+# Squash consecutive repeated commands in zsh_history.
 setopt hist_ignore_dups
+# Do not record history command itself.
 setopt hist_no_store
+# Share history among instances.
 setopt share_history
-setopt auto_cd
-setopt auto_pushd
-setopt pushd_ignore_dups
-unsetopt correct
+# Show completion with varying widths.
 setopt list_packed
-setopt nolistbeep
-setopt nobeep
-setopt multios
+# Do not beep
+unsetopt beep
 
 # ::aliases
 if [[ $TERM = dumb ]]; then
