@@ -179,7 +179,7 @@ else
       eval "`dircolors -b`"
       alias ls="ls -h --color=auto"
       ;;
-    darwin*|freebsd)
+    darwin*|freebsd*)
       # Indicate filetypes using colors. (for BSD utils)
       alias ls="ls -h -G"
       ;;
