@@ -227,21 +227,23 @@ fi
 alias du="du -h"
 alias df="df -h"
 
-# ::history setting
+# record history in ~/.zsh_history
 HISTFILE=~/.zsh_history
+# Number of history entries loaded into memory
 HISTSIZE=1000
+# Number of history entries recorded in ~/.zsh_history
 SAVEHIST=10000000000
 
-# ::set default editor
-for edt in vim vi
+# set default editor
+for edt in vim vim.tiny vi
 do
-    if which $edt 1>/dev/null 2>/dev/null
-    then
-        export EDITOR=$edt
+    if type "$edt" >/dev/null; then
+        export EDITOR="$edt"
         break
     fi
 done
 
+# Load "command-not-found" functionality, if it exists.
 if [[ -f /etc/zsh_command_not_found ]]; then
   . /etc/zsh_command_not_found || true
 fi
