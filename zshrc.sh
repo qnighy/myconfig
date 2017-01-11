@@ -1,5 +1,12 @@
 #!/usr/bin/env zsh
 
+# these functions are autoloaded at the first call.
+autoload -Uz compinit
+autoload -Uz predict-on
+autoload -Uz history-search-end
+autoload -Uz vcs_info
+autoload -Uz zed
+
 # Vim-like keybind
 bindkey -v
 
@@ -54,17 +61,14 @@ elif [[ -n "${MC_SID-}" ]]; then
   PS4='+%N:%i>'
 fi
 
-# ::autoload
 # complement setting
-autoload -U compinit;compinit
+compinit
 # predict complement setting
-#autoload -U predict-on;predict-on
+# predict-on
 # history search
-autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 # zed
-autoload zed
 
 # ::keybind
 bindkey "^[OH" beginning-of-line
