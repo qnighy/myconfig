@@ -19,12 +19,14 @@ setopt prompt_subst
 # %n = username
 # %M = full host name
 # %~ = cwd, with home replaced with ~
+# ${pyenv_info_msg_0_} = pyenv information provided by precmd_pyenv_info
+# ${vcs_info_msg_0_} = VCS information provided by vcs_info
 # %(1j. (%j jobs%).) = show the number of jobs when there are
 # %(2L. (shlvl %L%).) = show the depth in nested zsh
 # %(?.. (status %?%)) = show status number when nonzero
 # %(?..%S%F{red}) ... %(?..%f%s) = make the prompt char red and standout when nonzero status
 # %# = # for root and % for non-root
-PS1='%B%F{blue}%n@%M:%b%f%~${vcs_info_msg_0_}%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
+PS1='%B%F{blue}%n@%M:%b%f%~${pyenv_info_msg_0_}${vcs_info_msg_0_}%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
 %(?..%S%F{red})%#%(?..%f%s) '
 # RPS1: right-hand-side counterpart of PS1
 # %F{color} ... %f = color
@@ -59,7 +61,7 @@ zstyle ':vcs_info:*' stagedstr '%F{yellow}!'
 zstyle ':vcs_info:*' unstagedstr '%F{red}+'
 if [[ $TERM = dumb ]]; then
   # Use simplified version in dumb terminal.
-  PS1='%n@%M:%~${vcs_info_msg_0_}%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
+  PS1='%n@%M:%~${pyenv_info_msg_0_}${vcs_info_msg_0_}%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
 %(?..[!])%# '
   RPS1=''
   PS2='%_> '
@@ -87,6 +89,20 @@ precmd_vcs_info() {
   vcs_info
 }
 add-zsh-hook precmd precmd_vcs_info
+
+# register precmd to show pyenv information on the prompt.
+precmd_pyenv_info() {
+  if type pyenv >/dev/null; then
+    if [[ $(pyenv version-origin) = $HOME/.pyenv/version ]]; then
+      pyenv_info_msg_0_=""
+    else
+      pyenv_info_msg_0_=" (py:$(pyenv version-name))"
+    fi
+  fi
+}
+add-zsh-hook precmd precmd_pyenv_info
+# ...and disable the similar functionality.
+export PYENV_VIRTUALENV_DISABLE_PROMPT="disable"
 
 # complement setting
 compinit
