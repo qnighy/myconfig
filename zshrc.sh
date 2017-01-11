@@ -207,24 +207,20 @@ if [[ $TERM = dumb ]]; then
   alias ls="ls -h -F"
   zstyle ':completion:*' list-colors ''
 else
-  case "${OSTYPE}" in
-    linux-gnu|cygwin|msys)
-      # Indicate filetypes using colors. (for GNU utils)
-      eval "`dircolors -b`"
-      alias ls="ls -h --color=auto"
-      zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-      ;;
-    darwin*|freebsd*)
-      # Indicate filetypes using colors. (for BSD utils)
-      alias ls="ls -h -G"
-      zstyle ':completion:*' list-colors ''
-      ;;
-    *)
-      # Indicate filetypes using symbols.
-      alias ls="ls -h -F"
-      zstyle ':completion:*' list-colors ''
-      ;;
-  esac
+  if ls --color -d / >/dev/null 2>&1; then
+    # Indicate filetypes using colors. (for GNU utils)
+    eval "$(dircolors -b 2>/dev/null)"
+    alias ls="ls -h --color=auto"
+    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+  elif ls -G -d / >/dev/null 2>&1; then
+    # Indicate filetypes using colors. (for BSD utils)
+    alias ls="ls -h -G"
+    zstyle ':completion:*' list-colors ''
+  else
+    # Indicate filetypes using symbols.
+    alias ls="ls -h -F"
+    zstyle ':completion:*' list-colors ''
+  fi
 fi
 # human-readable outputs for du and dh
 alias du="du -h"
