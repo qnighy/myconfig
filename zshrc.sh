@@ -1,29 +1,58 @@
-#::::zsh setting file::::
-#I think it would not work well in zsh version 4.3.2
+#!/usr/bin/env zsh
 
-
-# ::set key bind
+# Vim-like keybind
 bindkey -v
 
-# ::prompt setting
-case "${TERM}" in
-  dumb)
-    PROMPT='%n@%m:%~
+# Substitute variables in prompt strings.
+setopt prompt_subst
+# PS1: usual prompt string
+# %B ... %b = boldface
+# %F{color} ... %f = color
+# %n = username
+# %M = full host name
+# %~ = cwd, with home replaced with ~
+# %(1j. (%j jobs%).) = show the number of jobs when there are
+# %(2L. (shlvl %L%).) = show the depth in nested zsh
+# %(?.. (status %?%)) = show status number when nonzero
+# %(?..%S%F{red}) ... %(?..%f%s) = make the prompt char red and standout when nonzero status
+# %# = # for root and % for non-root
+PS1='%B%F{blue}%n@%M:%b%f%~%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
+%(?..%S%F{red})%#%(?..%f%s) '
+# RPS1: right-hand-side counterpart of PS1
+# %F{color} ... %f = color
+# %D{...} = current date time
+# %! = current history number
+# %y = current tty filename with the prefix /dev/ omitted
+RPS1='%F{red}%D{%Y/%m/%d %H:%M:%S}%f %!/%y'
+# PS2: prompt in command continuation (like in `if' and `for')
+# %_ = the status of the parser (e.g. if for if)
+PS2='%_> '
+# RPS2: right-hand-side counterpart of PS2
+RPS2=''
+# PS3: prompt in select statement
+PS3='?# '
+# PS4: prompt used when 'set -x' set in a script
+# %N = the name of the script
+# %i = the line number in the script
+PS4='+%N:%i>'
+if [[ $TERM = dumb ]]; then
+  # Use simplified version in dumb terminal.
+  PS1='%n@%M:%~%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
 %(?..[!])%# '
-    PROMPT2='%_>%(?..[!])%# '
-    PROMPT3='?#'
-    PROMPT4='+%N:%i>'
-    ;;
-  *)
-    PROMPT='%B%F{blue}%n@%m:%b%f%~
-%(?.%f.%S%F{red})%#%f%s '
-    PROMPT2='%_>%(?.%f.%S%F{red})%#%f%s '
-    PROMPT3='?#'
-    PROMPT4='+%N:%i>'
-    RPROMPT='%F{red}%D{%Y/%m/%d %H:%M:%S}%f %!/%y'
-    #RPROMPT2='%F{red}%D{%Y/%m/%d %H:%M:%S}%f %!/%y'
-    ;;
-esac
+  RPS1=''
+  PS2='%_> '
+  RPS2=''
+  PS3='?# '
+  PS4='+%N:%i>'
+elif [[ -n "${MC_SID-}" ]]; then
+  # Use one-line version in midnight commander.
+  PS1='%~:%(?..[!])%# '
+  RPS1=''
+  PS2='%_> '
+  RPS2=''
+  PS3='?# '
+  PS4='+%N:%i>'
+fi
 
 # ::autoload
 # complement setting
@@ -81,10 +110,6 @@ setopt multios
 # ::aliases
 alias RELOAD="source ~/.zshrc"
 alias where="whence -ca"
-alias j="jobs -l"
-alias gp="ps ax|grep"
-alias :q="exit"
-alias :q!="exit"
 if [ "$TERM" = "dumb" ]; then
   alias ls="ls -F"
 else
