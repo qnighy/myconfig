@@ -8,9 +8,6 @@ autoload -Uz history-search-end
 autoload -Uz vcs_info
 autoload -Uz zed
 
-# Vim-like keybind
-bindkey -v
-
 # Substitute variables in prompt strings.
 setopt prompt_subst
 # PS1: usual prompt string
@@ -127,6 +124,9 @@ compinit
 # These are similar to history-beginning-search-{back,for}ward, but they move the cursor to the end of the line.
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
+
+# Vim-like keybind
+bindkey -v
 
 # See http://invisible-island.net/xterm/ctlseqs/ctlseqs.html for xterm escape sequences.
 # SS3 H = Home
