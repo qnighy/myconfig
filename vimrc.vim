@@ -9,6 +9,10 @@ if !has('clientserver')
   let g:loaded_asynccommand = 0
 endif
 
+" Before overriding runtimepath, set netrwhome as the first element of
+" runtimepath.
+let g:netrw_home=split(&runtimepath,',')[0]
+
 let &runtimepath=expand("<sfile>:p:h")."/vim,".expand("<sfile>:p:h")."/vim/after,".&runtimepath
 let &runtimepath=expand("<sfile>:p:h")."/vim/bundle/vim-pathogen,".&runtimepath
 
