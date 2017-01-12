@@ -172,7 +172,7 @@ bindkey -v "^?" backward-delete-char
 bindkey -v "^W" backward-kill-word
 
 case "${TERM}" in
-  kterm*|xterm|rxvt|cygwin)
+  kterm*|xterm*|rxvt*|cygwin*|screen*|tmux*)
     precmd_terminal_title() {
       # %n = username
       # %m = host name
