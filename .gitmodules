@@ -49,9 +49,6 @@
 [submodule "vim/bundle/vim-glsl"]
 	path = vim/bundle/vim-glsl
 	url = https://github.com/tikhomirov/vim-glsl.git
-[submodule "vim/bundle/vim-llvm"]
-	path = vim/bundle/vim-llvm
-	url = https://github.com/qnighy/llvm.vim.git
 [submodule "vim/bundle/vim-toml"]
 	path = vim/bundle/vim-toml
 	url = https://github.com/cespare/vim-toml.git
@@ -79,3 +76,6 @@
 [submodule "zsh-completions"]
 	path = zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "vim-llvm-new"]
+	path = vim/bundle/vim-llvm
+	url = https://github.com/rhysd/vim-llvm.git
