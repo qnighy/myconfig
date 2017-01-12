@@ -171,15 +171,32 @@ bindkey -v "^?" backward-delete-char
 # viins ^W := backward-kill-word (previous: vi-backward-kill-word)
 bindkey -v "^W" backward-kill-word
 
-# ::terminal title
 case "${TERM}" in
-kterm*|xterm|rxvt|cygwin)
+  kterm*|xterm|rxvt|cygwin)
     precmd_terminal_title() {
-        #echo -ne "\e]0;${USER}@${HOST%%.*}:${PWD}\a"
-        wdhome=$(pwd|awk "{sub(\"^${HOME}\",\"~\",\$1);print \$1}")
-        echo -ne "\e]0;Z>${wdhome}(${USER}@${HOST%%.*})\a"
+      # %n = username
+      # %m = host name
+      # %3~ = cwd, with home replaced with ~, rightmost 3 elements
+      # %# = # for root and % for non-root
+      if [[ -n ${ZSH_LOCAL_TITLE-} ]]; then
+        print -nP "\e]0;%3~%#\a"
+      else
+        print -nP "\e]0;%m:%3~%#\a"
+      fi
     }
     add-zsh-hook precmd precmd_terminal_title
+    preexec_terminal_title() {
+      # $1 = command line executed (including arguments)
+      # %n = username
+      # %m = host name
+      # %3~ = cwd, with home replaced with ~, rightmost 3 elements
+      if [[ -n ${ZSH_LOCAL_TITLE-} ]]; then
+        print -nP "\e]0;\$1 %3~\a"
+      else
+        print -nP "\e]0;\$1 %m:%3~\a"
+      fi
+    }
+    add-zsh-hook preexec preexec_terminal_title
     ;;
 esac
 
