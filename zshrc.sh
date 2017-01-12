@@ -8,6 +8,12 @@ autoload -Uz history-search-end
 autoload -Uz vcs_info
 autoload -Uz zed
 
+# Define normal shlvl + 1 in terms of $TMUX.
+ZSH_SHLVL_THRESHOLD=2
+if [[ -n ${TMUX-} ]]; then
+  ZSH_SHLVL_THRESHOLD=3
+fi
+
 # Substitute variables in prompt strings.
 setopt prompt_subst
 # PS1: usual prompt string
@@ -25,7 +31,7 @@ setopt prompt_subst
 # %(?.. (status %?%)) = show status number when nonzero
 # %(?..%S%F{red}) ... %(?..%f%s) = make the prompt char red and standout when nonzero status
 # %# = # for root and % for non-root
-PS1="%B%F{${ZSH_HOST_EMBLEM-green}}%n@%M:%b%f%~\${rbenv_info_msg_0_}\${pyenv_info_msg_0_}\${vcs_info_msg_0_}%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
+PS1="%B%F{${ZSH_HOST_EMBLEM-green}}%n@%M:%b%f%~\${rbenv_info_msg_0_}\${pyenv_info_msg_0_}\${vcs_info_msg_0_}%(1j. (%j jobs%).)%(${ZSH_SHLVL_THRESHOLD}L. (shlvl %L%).)%(?.. (status %?%))
 %(?..%S%F{red})%#%(?..%f%s) "
 # RPS1: right-hand-side counterpart of PS1
 # %F{color} ... %f = color
@@ -60,8 +66,8 @@ zstyle ':vcs_info:*' stagedstr '%F{yellow}!'
 zstyle ':vcs_info:*' unstagedstr '%F{red}+'
 if [[ $TERM = dumb ]]; then
   # Use simplified version in dumb terminal.
-  PS1='%n@%M:%~${rbenv_info_msg_0_}${pyenv_info_msg_0_}${vcs_info_msg_0_}%(1j. (%j jobs%).)%(2L. (shlvl %L%).)%(?.. (status %?%))
-%(?..[!])%# '
+  PS1="%n@%M:%~\${rbenv_info_msg_0_}\${pyenv_info_msg_0_}\${vcs_info_msg_0_}%(1j. (%j jobs%).)%(${ZSH_SHLVL_THRESHOLD}L. (shlvl %L%).)%(?.. (status %?%))
+%(?..[!])%# "
   RPS1=''
   PS2='%_> '
   RPS2=''
