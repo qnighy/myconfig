@@ -1,0 +1,94 @@
+% Use a package to avoid old (La)TeX habits.
+\RequirePackage[l2tabu, orthodox]{nag}
+
+% scrartcl: KOMA-script article
+% [paper=a4]: paper size is A4.
+\documentclass[paper=a4]{scrartcl}
+
+% AMS-related packages
+\usepackage{amstext,amsmath,amsthm,amssymb,amsfonts}
+
+% Avoid non-AMS mathematical usage.
+\usepackage[all, warning]{onlyamsmath}
+
+% Use newtx fonts; maybe should be avoided in paper submissions.
+\usepackage{newtxtext,newtxmath}
+
+% \braket{}, \set{}
+\usepackage{braket}
+
+% Japanese Ruby generation.
+\usepackage{pxrubrica}
+
+% Syntax-highlighted program listings.
+\usepackage{listingsutf8}
+
+% Extended graphics package; provides \includegraphics.
+\usepackage{graphicx}
+
+% Extended color package; provides \color.
+\usepackage{xcolor}
+
+% Provides \url.
+\usepackage{url}
+
+% \mleft/\mright, a little clever replacements for \left/\right.
+\usepackage{mleftright}
+
+% \mathscr
+\usepackage{mathrsfs}
+
+% Part of hyperref.
+\usepackage{nameref}
+
+% Turns almost everything into hyper-reference.
+\usepackage{hyperref}
+
+% Float wrapper for algorithms.
+\usepackage{algorithm}
+% One of algorithm typesetting environments.
+\usepackage{algpseudocode}
+
+% Provides \cref, which automatically emits Lemma, Definition, etc.
+\usepackage{cleveref}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{axiom}[definition]{Axiom}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{exercise}{Exercise}[section]
+
+\title{pdflatex-scrartcl example}
+\author{Author}
+%\date{January 13, 2017}
+
+\begin{document}
+
+\maketitle
+
+\section{Lorem ipsum}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Definitions}
+
+\begin{definition}[Foo]\label{def:foo}
+  Foo is bar.
+\end{definition}
+
+A definition can be referenced like~\cref{def:foo}.
+
+\section{Citation}
+
+Citation is done like~\cite{CWM1978}.
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}
+

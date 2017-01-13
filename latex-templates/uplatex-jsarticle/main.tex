@@ -1,0 +1,129 @@
+% Use a package to avoid old (La)TeX habits.
+\RequirePackage[l2tabu, orthodox]{nag}
+
+% jsarticle: improved version of Japanese article style
+% [dvipdfmx]: we use dvipdfmx.
+% [uplatex]: we use uplatex.
+% [papersize]: tell page size to pdf generator.
+% [a4paper]: paper size is A4.
+% [10pt]: point size is 10pt.
+\documentclass[dvipdfmx,uplatex,papersize,a4paper,10pt]{jsarticle}
+
+% AMS-related packages
+\usepackage{amstext,amsmath,amsthm,amssymb,amsfonts}
+
+% Avoid non-AMS mathematical usage.
+\usepackage[all, warning]{onlyamsmath}
+
+% Use newtx fonts; maybe should be avoided in paper submissions.
+\usepackage{newtxtext,newtxmath}
+
+% \braket{}, \set{}
+\usepackage{braket}
+
+% Japanese Ruby generation.
+\usepackage{pxrubrica}
+
+% Syntax-highlighted program listings.
+% jlisting: allow Japanese text in listings.
+\usepackage{listings,jlisting}
+
+% Extended graphics package; provides \includegraphics.
+\usepackage{graphicx}
+
+% Extended color package; provides \color.
+\usepackage{xcolor}
+
+% Provides \url.
+\usepackage{url}
+
+% \mleft/\mright, a little clever replacements for \left/\right.
+\usepackage{mleftright}
+
+% \mathscr
+\usepackage{mathrsfs}
+
+% Part of hyperref.
+\usepackage{nameref}
+
+% Turns almost everything into hyper-reference.
+\usepackage{hyperref}
+% Improves non-ASCII characters in bookmarks.
+\usepackage{pxjahyper}
+
+% Float wrapper for algorithms.
+\usepackage{algorithm}
+% One of algorithm typesetting environments.
+\usepackage{algpseudocode}
+
+% Provides \cref, which automatically emits Lemma, Definition, etc.
+\usepackage{cleveref}
+
+\theoremstyle{definition}
+\newtheorem{definition}{定義}[section]
+\newtheorem{example}[definition]{例}
+\newtheorem{theorem}[definition]{定理}
+\newtheorem{lemma}[definition]{補題}
+\newtheorem{corollary}[definition]{系}
+\newtheorem{proposition}[definition]{命題}
+\newtheorem{axiom}[definition]{公理}
+\newtheorem{remark}[definition]{注意}
+\newtheorem{exercise}{練習問題}[section]
+
+\crefname{definition}{定義}{定義}
+\Crefname{definition}{定義}{定義}
+\crefname{example}{例}{例}
+\Crefname{example}{例}{例}
+\crefname{theorem}{定理}{定理}
+\Crefname{theorem}{定理}{定理}
+\crefname{lemma}{補題}{補題}
+\Crefname{lemma}{補題}{補題}
+\crefname{corollary}{系}{系}
+\Crefname{corollary}{系}{系}
+\crefname{proposition}{命題}{命題}
+\Crefname{proposition}{命題}{命題}
+\crefname{axiom}{公理}{公理}
+\Crefname{axiom}{公理}{公理}
+\crefname{remark}{注意}{注意}
+\Crefname{remark}{注意}{注意}
+\crefname{exercise}{練習問題}{練習問題}
+\Crefname{exercise}{練習問題}{練習問題}
+
+\title{uplatex-jsarticle サンプル}
+\author{オーサー}
+%\date{2017年01月13日}
+
+\begin{document}
+
+\maketitle
+
+\section{寿限無}
+
+寿限無、寿限無
+五劫の擦り切れ
+海砂利水魚の
+水行末 雲来末 風来末
+食う寝る処に住む処
+藪ら柑子の藪柑子
+パイポ　パイポ　パイポのシューリンガン
+シューリンガンのグーリンダイ
+グーリンダイのポンポコピーのポンポコナーの
+長久命の長助
+
+\section{定義}
+
+\begin{definition}[フー]\label{def:foo}
+  フーはバー。
+\end{definition}
+
+定義は\cref{def:foo}のようにして参照できる。
+
+\section{引用}
+
+引用は\cite{CWM1978, CWMJA2005}のようにして行える。
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}
+
