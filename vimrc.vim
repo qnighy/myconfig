@@ -13,10 +13,9 @@ endif
 " runtimepath.
 let g:netrw_home=split(&runtimepath,',')[0]
 
-let &runtimepath=expand("<sfile>:p:h")."/vim,".expand("<sfile>:p:h")."/vim/after,".&runtimepath
-let &runtimepath=expand("<sfile>:p:h")."/vim/bundle/vim-pathogen,".&runtimepath
-
-call pathogen#infect()
+" Use pathogen to add bundles o &runtimepath.
+exec "source ".expand("<sfile>:p:h")."/vim/bundle/vim-pathogen/autoload/pathogen.vim"
+exec pathogen#infect(expand("<sfile>:p:h")."/vim/bundle/{}")
 
 set nocompatible
 
