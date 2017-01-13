@@ -1,0 +1,8 @@
+[log]
+	date = iso8601
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
+[push]
+	default = simple

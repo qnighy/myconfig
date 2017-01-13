@@ -1,0 +1,30 @@
+Host *
+  # Reuse a connection for the same host.
+  ControlMaster auto
+  # Control file used to multiplex connections.
+  ControlPath ~/.ssh/mux-%r@%h:%p
+  # Detach the master proces if other processes are using the connection.
+  # And the master exits 10 seconds after all connections are disconnected.
+  ControlPersist 10
+  # Disable GSSAPI by default.
+  GSSAPIAuthentication no
+  # Enable compression.
+  Compression yes
+  # Use compression level 9.
+  CompressionLevel 9
+  # Use arcfour256 in protocol version 1.
+  Cipher arcfour256
+  # Forward reversely to the local ssh-agent.
+  ForwardAgent yes
+  # Disable raw TCP keepalive messages.
+  TCPKeepAlive no
+  # Enable SSH keepalive messages. These are sent in 15 seconds period.
+  ServerAliveInterval 15
+  # If there are no responses for 3 consecutive keepalives, disconnect.
+  ServerAliveCountMax 3
+  # Disable password authentication by default.
+  PasswordAuthentication no
+  # Enable publickey authentication.
+  PubkeyAuthentication yes
+  # Only use identities explicitly specified, avoiding to use ones offered by ssh-agent.
+  IdentitiesOnly yes
