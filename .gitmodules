@@ -4,9 +4,6 @@
 [submodule "vim/bundle/coq.vim"]
 	path = vim/bundle/coq.vim
 	url = https://github.com/qnighy/coq.vim.git
-[submodule "vim/bundle/flymaker"]
-	path = vim/bundle/flymaker
-	url = https://github.com/vim-scripts/flymaker.git
 [submodule "vim/bundle/fsharp-vim"]
 	path = vim/bundle/fsharp-vim
 	url = https://github.com/kongo2002/fsharp-vim.git
