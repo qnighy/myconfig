@@ -91,3 +91,6 @@
 [submodule "vim/bundle/vimdoc-ja"]
 	path = vim/bundle/vimdoc-ja
 	url = https://github.com/vim-jp/vimdoc-ja.git
+[submodule "site-lisp/js2-mode"]
+	path = site-lisp/js2-mode
+	url = https://github.com/mooz/js2-mode.git
