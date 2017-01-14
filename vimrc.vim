@@ -174,36 +174,103 @@ colorscheme molokai
 " highlight cursor as red when using input methods.
 hi CursorIM  guifg=black  guibg=red  gui=NONE  ctermfg=black  ctermbg=white  cterm=reverse
 
-" neocomplcache
+" Disable AutoComplPop
 let g:acp_enableAtStartup = 0
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" Enable neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Enable smartcase in neocomplete.
+let g:neocomplete#enable_smart_case = 1
 
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : ''
+" Define dictionary for completion.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
     \ }
 
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
+" Define keywords.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-inoremap <silent> <CR> <C-R>=<SID>my_cr_function()<CR>
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
+" <TAB>: completion.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ neocomplete#start_manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
-
+" Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+" Enable autocompletion for vimtex.
+" let g:neocomplete#sources#omni#input_patterns.tex =
+let g:neocomplete#force_omni_input_patterns.tex =
+      \ '\v\\%('
+      \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+      \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
+      \ . '|hyperref\s*\[[^]]*'
+      \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+      \ . '|%(include%(only)?|input)\s*\{[^}]*'
+      \ . '|\a*(gls|Gls|GLS)(pl)?\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+      \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
+      \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
+      \ . ')'
+
+"let g:neocomplete#sources#omni#input_patterns.php =
+"\ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+"let g:neocomplete#sources#omni#input_patterns.c =
+"\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+"let g:neocomplete#sources#omni#input_patterns.cpp =
+"\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+
+" " For perlomni.vim setting.
+" " https://github.com/c9s/perlomni.vim
+" let g:neocomplete#sources#omni#input_patterns.perl =
+" \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+
+" For smart TAB completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+"        \ <SID>check_back_space() ? "\<TAB>" :
+"        \ neocomplete#start_manual_complete()
+"  function! s:check_back_space() "{{{
+"    let col = col('.') - 1
+"    return !col || getline('.')[col - 1]  =~ '\s'
+"  endfunction"}}}
+
 
 " Use markdown for *.md
 autocmd BufRead,BufNewFile *.md setlocal filetype=markdown

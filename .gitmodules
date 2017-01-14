@@ -37,9 +37,6 @@
 [submodule "site-lisp/evil"]
 	path = site-lisp/evil
 	url = https://github.com/emacsmirror/evil.git
-[submodule "vim/bundle/neocomplcache.vim"]
-	path = vim/bundle/neocomplcache.vim
-	url = https://github.com/Shougo/neocomplcache.vim.git
 [submodule "vim/bundle/vim-hoogle"]
 	path = vim/bundle/vim-hoogle
 	url = https://github.com/Twinside/vim-hoogle.git
@@ -79,3 +76,6 @@
 [submodule "vim/bundle/molokai"]
 	path = vim/bundle/molokai
 	url = https://github.com/tomasr/molokai.git
+[submodule "vim/bundle/neocomplete.vim"]
+	path = vim/bundle/neocomplete.vim
+	url = https://github.com/Shougo/neocomplete.vim.git
