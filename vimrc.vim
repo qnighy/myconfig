@@ -282,3 +282,6 @@ autocmd BufNewFile,BufRead *.ll setlocal ft=llvm
 autocmd FileType rust setlocal sts=4 sw=4 et
 " Use 4-space indenting for python
 autocmd FileType python setlocal sts=4 sw=4 et
+
+" Editorconfig configuration
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
