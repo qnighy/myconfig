@@ -279,6 +279,11 @@ let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*f
 "    return !col || getline('.')[col - 1]  =~ '\s'
 "  endfunction"}}}
 
+" Disable spell-checking in general, but enable for certain filetypes.
+set nospell
+autocmd FileType markdown,html,tex setlocal spell
+" Disable spell-checking for Japanese.
+set spelllang=en,cjk
 
 " Use markdown for *.md
 autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
