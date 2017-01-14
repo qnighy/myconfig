@@ -80,6 +80,8 @@ set guioptions=abcriL
 
 set shortmess=axtToOI
 
+colorscheme molokai
+
 au BufRead,BufNewFile *.md set filetype=markdown
 
 " let c_no_curly_error=1
