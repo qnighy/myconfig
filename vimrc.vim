@@ -67,6 +67,8 @@ set history=1000
 set nobackup writebackup backupdir=$HOME/tmp
 " Create a swapfile in $HOME/tmp.
 set swapfile directory=$HOME/tmp
+" Create an undofile in $HOME/tmp.
+set undofile undodir=$HOME/tmp
 
 " Use highlighted incremental search.
 set incsearch hlsearch
