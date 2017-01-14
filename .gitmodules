@@ -85,3 +85,6 @@
 [submodule "vim/bundle/jedi-vim"]
 	path = vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "vim/bundle/neco-vim"]
+	path = vim/bundle/neco-vim
+	url = https://github.com/Shougo/neco-vim.git
