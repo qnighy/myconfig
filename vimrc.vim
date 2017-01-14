@@ -285,6 +285,25 @@ autocmd FileType markdown,html,tex setlocal spell
 " Disable spell-checking for Japanese.
 set spelllang=en,cjk
 
+
+" Borrowed from pathogen#helptags, but detects translated docs also.
+function! Myhelptags() abort
+  let sep = pathogen#slash()
+  for glob in pathogen#split(&rtp)
+    for dir in map(split(glob(glob), "\n"), 'v:val.sep."/doc/".sep')
+      if (dir)[0 : strlen($VIMRUNTIME)] !=# $VIMRUNTIME.sep && filewritable(dir) == 2 && !empty(split(glob(dir.'*.txt'))+split(glob(dir.'*.??x'))) && (!filereadable(dir.'tags') || filewritable(dir.'tags'))
+        silent! execute 'helptags' pathogen#fnameescape(dir)
+      endif
+    endfor
+  endfor
+endfunction
+
+" Replace existing pathogen#helptags.
+command! -bar Helptags :call Myhelptags()
+
+" Prefer Japanese help to English.
+set helplang=ja,en
+
 " Use markdown for *.md
 autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
 " Use llvm for *.ll

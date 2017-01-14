@@ -88,3 +88,6 @@
 [submodule "vim/bundle/neco-vim"]
 	path = vim/bundle/neco-vim
 	url = https://github.com/Shougo/neco-vim.git
+[submodule "vim/bundle/vimdoc-ja"]
+	path = vim/bundle/vimdoc-ja
+	url = https://github.com/vim-jp/vimdoc-ja.git
