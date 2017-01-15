@@ -110,7 +110,7 @@ set laststatus=2
 " Show the command line.
 set showcmd
 
-if !has('termresponse') || &t_u7 == ''
+if !has('termresponse') || !exists('&t_u7') || &t_u7 == ''
   " Show "ambiguous-width" characters in double-width.
   set ambiwidth=double
 endif
