@@ -34,9 +34,6 @@
 [submodule "site-lisp/helm"]
 	path = site-lisp/helm
 	url = https://github.com/emacs-helm/helm.git
-[submodule "site-lisp/evil"]
-	path = site-lisp/evil
-	url = https://github.com/emacsmirror/evil.git
 [submodule "vim/bundle/vim-hoogle"]
 	path = vim/bundle/vim-hoogle
 	url = https://github.com/Twinside/vim-hoogle.git
