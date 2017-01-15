@@ -128,7 +128,20 @@ add-zsh-hook precmd precmd_rbenv_info
 fpath=("$MYCONFIG_DIR/zsh-completions/src" $fpath)
 
 # Initialize completion.
-compinit
+if [[ -n ${ZSH_NO_COMPAUDIT-} ]]; then
+  # if $ZSH_NO_COMPAUDIT is specified, skip compaudit (-u).
+  compinit -u
+else
+  # use zstat to retrieve the file owner of a file.
+  zmodload -F zsh/stat b:zstat
+  if [[ $(zstat +uid "$MYCONFIG_DIR/zshrc.sh") = $UID ]]; then
+    # if owner(zshrc.sh) == uid, do compaudit.
+    compinit
+  else
+    # if not, skip compaudit.
+    compinit -u
+  fi
+fi
 
 # define widgets which invoke the function 'history-search-end'.
 # These are similar to history-beginning-search-{back,for}ward, but they move the cursor to the end of the line.
