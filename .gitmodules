@@ -100,3 +100,6 @@
 [submodule "posh.d/posh-git"]
 	path = posh.d/posh-git
 	url = https://github.com/dahlbyk/posh-git.git
+[submodule "site-lisp/molokai-theme"]
+	path = site-lisp/molokai-theme
+	url = https://github.com/hbin/molokai-theme.git
