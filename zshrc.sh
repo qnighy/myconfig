@@ -11,6 +11,19 @@ autoload -Uz history-search-end
 autoload -Uz vcs_info
 autoload -Uz zed
 
+# Function to remove duplicates from $PATH.
+remove_path_duplicates() {
+  local PATHENTRIES NEWPATHENTRIES
+  PATHENTRIES=("${(@s/:/)PATH}")
+  NEWPATHENTRIES=()
+  for p in "${PATHENTRIES[@]}"; do
+    if [[ -z "${NEWPATHENTRIES[(r)$p]}" ]]; then
+      NEWPATHENTRIES+="$p"
+    fi
+  done
+  export PATH="${(j/:/)NEWPATHENTRIES}"
+}
+
 # Define normal shlvl + 1 in terms of $TMUX.
 ZSH_SHLVL_THRESHOLD=2
 if [[ -n ${TMUX-} ]]; then
