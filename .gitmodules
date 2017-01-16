@@ -97,3 +97,6 @@
 [submodule "site-lisp/tabbar"]
 	path = site-lisp/tabbar
 	url = https://github.com/dholm/tabbar.git
+[submodule "vim/bundle/vim-ps1"]
+	path = vim/bundle/vim-ps1
+	url = https://github.com/PProvost/vim-ps1.git
