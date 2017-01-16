@@ -304,6 +304,10 @@ command! -bar Helptags :call Myhelptags()
 " Prefer Japanese help to English.
 set helplang=ja,en
 
+" Automatically open the quickfix window on :make/:grep/etc.
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
 " Use markdown for *.md
 autocmd BufRead,BufNewFile *.md setlocal filetype=markdown
 " Use llvm for *.ll
