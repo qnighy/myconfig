@@ -100,3 +100,6 @@
 [submodule "vim/bundle/vim-ps1"]
 	path = vim/bundle/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
+[submodule "posh.d/posh-git"]
+	path = posh.d/posh-git
+	url = https://github.com/dahlbyk/posh-git.git
