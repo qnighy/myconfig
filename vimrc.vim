@@ -115,6 +115,11 @@ if !has('termresponse') || !exists('&t_u7') || &t_u7 == ''
   set ambiwidth=double
 endif
 
+if exists('&t_Co')
+  " enable 256-color terminal. It enables molokai colorscheme in a terminal.
+  set t_Co=256
+endif
+
 " Show ruler (column/row number) in the status line.
 set ruler
 
