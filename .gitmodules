@@ -103,3 +103,6 @@
 [submodule "site-lisp/molokai-theme"]
 	path = site-lisp/molokai-theme
 	url = https://github.com/hbin/molokai-theme.git
+[submodule "vim/bundle/vim-pyenv"]
+	path = vim/bundle/vim-pyenv
+	url = https://github.com/lambdalisue/vim-pyenv.git
