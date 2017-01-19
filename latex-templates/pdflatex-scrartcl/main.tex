@@ -54,6 +54,15 @@
 
 % \mathscr
 \usepackage{mathrsfs}
+% Override ursfs.fd to suppress "Font shape `U/rsfs/m/n' in size <5.5>/<10.5> not available" warning.
+\DeclareFontFamily{U}{rsfs}{\skewchar\font127}
+\DeclareFontShape{U}{rsfs}{m}{n}{%
+  % <5> <6> rsfs5
+  <5> <5.5> <6> rsfs5
+  <7> rsfs7
+  % <8> <9> <10> <10.95> <12> <14.4> <17.28> <20.74> <24.88> rsfs10
+  <8> <9> <10> <10.5> <10.95> <12> <14.4> <17.28> <20.74> <24.88> rsfs10
+}{}
 
 % Part of hyperref.
 \usepackage{nameref}
@@ -99,6 +108,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 \end{definition}
 
 A definition can be referenced like~\cref{def:foo}.
+
+\section{Mathematical Expressions}
+
+\[ e^{i\pi} + 1 = 0 \]
+
+\[ x X \mathbf{X} \mathbb{X} \mathcal{X} \mathfrak{X} \mathscr{X} \]
 
 \section{Citation}
 
