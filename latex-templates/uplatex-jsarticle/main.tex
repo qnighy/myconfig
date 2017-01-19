@@ -15,6 +15,24 @@
 % Avoid non-AMS mathematical usage.
 \usepackage[all, warning]{onlyamsmath}
 
+% Use otf fonts.
+\usepackage{otf}
+% Avoid "Font Shape undefined" error for italic Japanese texts.
+\DeclareFontShape{JY2}{hmc}{m}{it}{<->ssub*hmc/m/n}{}
+\DeclareFontShape{JY2}{hmc}{m}{sl}{<->ssub*hmc/m/n}{}
+\DeclareFontShape{JY2}{hmc}{m}{sc}{<->ssub*hmc/m/n}{}
+\DeclareFontShape{JY2}{hgt}{m}{it}{<->ssub*hgt/m/n}{}
+\DeclareFontShape{JY2}{hgt}{m}{sl}{<->ssub*hgt/m/n}{}
+\DeclareFontShape{JY2}{hmc}{bx}{it}{<->ssub*hgt/m/n}{}
+\DeclareFontShape{JY2}{hmc}{bx}{sl}{<->ssub*hgt/m/n}{}
+\DeclareFontShape{JT2}{hmc}{m}{it}{<->ssub*hmc/m/n}{}
+\DeclareFontShape{JT2}{hmc}{m}{sl}{<->ssub*hmc/m/n}{}
+\DeclareFontShape{JT2}{hmc}{m}{sc}{<->ssub*hmc/m/n}{}
+\DeclareFontShape{JT2}{hgt}{m}{it}{<->ssub*hgt/m/n}{}
+\DeclareFontShape{JT2}{hgt}{m}{sl}{<->ssub*hgt/m/n}{}
+\DeclareFontShape{JT2}{hmc}{bx}{it}{<->ssub*hgt/m/n}{}
+\DeclareFontShape{JT2}{hmc}{bx}{sl}{<->ssub*hgt/m/n}{}
+
 % Use newtx fonts; maybe should be avoided in paper submissions.
 \usepackage{newtxtext,newtxmath}
 
