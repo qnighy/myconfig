@@ -222,13 +222,11 @@ case "${TERM}" in
     add-zsh-hook precmd precmd_terminal_title
     preexec_terminal_title() {
       # $1 = command line executed (including arguments)
-      # %n = username
       # %m = host name
-      # %3~ = cwd, with home replaced with ~, rightmost 3 elements
       if [[ -n ${ZSH_LOCAL_TITLE-} ]]; then
-        print -nP "\e]0;\$1 %3~\a"
+        print -nP "\e]0;\$1\a"
       else
-        print -nP "\e]0;\$1 %m:%3~\a"
+        print -nP "\e]0;\$1 (@%m)\a"
       fi
     }
     add-zsh-hook preexec preexec_terminal_title
