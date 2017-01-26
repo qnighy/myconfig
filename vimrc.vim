@@ -146,6 +146,11 @@ match ZenkakuSpace /\%u3000\|\%x81\%x40\|\xa1\xa1/
 " Check for modelines in the first 5 lines in a file.
 set modeline modelines=5
 
+" When existing vim is told to open some file,
+" [usetab] move to a tab/window if there is already one with the desired file.
+" [newtab] open a new tab if not.
+set switchbuf+=usetab,newtab
+
 " a: Use "+ for visual selection.
 " c: Use console dialog instead of visual dialog
 " i: Use vim icon.
