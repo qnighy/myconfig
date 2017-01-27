@@ -112,18 +112,65 @@ precmd_vcs_info() {
 add-zsh-hook precmd precmd_vcs_info
 
 # register precmd to show pyenv information on the prompt.
+# It also invokes pyenv-virtualenv in faster way.
 precmd_pyenv_info() {
-  if type pyenv >/dev/null; then
-    if [[ $(pyenv version-origin) = $HOME/.pyenv/version ]]; then
+  if [[ -n "${PYENV_ROOT-}" ]]; then
+    local pyenv_version_name pyenv_version_origin
+    if [[ -n "${PYENV_VERSION-}" ]]; then
+      pyenv_version_name="$PYENV_VERSION"
+      pyenv_version_origin="\$PYENV_VERSION"
+    else
+      local root
+      if [[ -n "${PYENV_DIR-}" ]]; then
+        root="${PYENV_DIR}"
+      else
+        root="$(pwd)"
+      fi
+      while ! [[ "$root" =~ ^//[^/]*$ ]]; do
+        if [[ -e "${root}/.python-version" ]]; then
+          pyenv_version_origin="${root}/.python-version"
+        fi
+        if ! [[ -n "$root" ]]; then
+          break
+        fi
+        root="${root%/*}"
+      done
+      if ! [[ -n "${pyenv_version_origin-}" ]]; then
+        pyenv_version_origin="${PYENV_ROOT}/version"
+      fi
+    fi
+    if [[ ${pyenv_version_origin} = ${PYENV_ROOT}/version ]]; then
       pyenv_info_msg_0_=""
     else
-      pyenv_info_msg_0_=" (py:$(pyenv version-name))"
+      if ! [[ -n "${pyenv_version_name}" ]]; then
+        pyenv_version_name="$(cut -b 1-1024 "${pyenv_version_origin}")"
+      fi
+      pyenv_info_msg_0_=" (py:${pyenv_version_name})"
     fi
+
+    # If pyenv-virtualenv-fast is enabled and pyenv_version_name changed, then invoke pyenv sh-activate.
+    if [[ -n ${use_pyenv_virtualenv_fast-} && ${old_pyenv_version_name-} != ${pyenv_version_name} ]]; then
+      if [[ -n "${VIRTUAL_ENV-}" ]]; then
+        eval "$(pyenv sh-activate --quiet || pyenv sh-deactivate --quiet)"
+      else
+        eval "$(pyenv sh-activate --quiet)"
+      fi
+    fi
+    old_pyenv_version_name="$pyenv_version_name"
+  else
+    pyenv_info_msg_0_=""
   fi
 }
 add-zsh-hook precmd precmd_pyenv_info
 # ...and disable the similar functionality.
 export PYENV_VIRTUALENV_DISABLE_PROMPT="disable"
+# Invoke this function to switch to faster pyenv_virtualenv.
+pyenv-virtualenv-fast-init() {
+  if [[ -n $precmd_functions[(r)_pyenv_virtualenv_hook] ]]; then
+    precmd_functions[$precmd_functions[(i)_pyenv_virtualenv_hook]]=()
+    use_pyenv_virtualenv_fast=yes
+  fi
+}
 
 # register precmd to show rbenv information on the prompt.
 precmd_rbenv_info() {
