@@ -174,12 +174,41 @@ pyenv-virtualenv-fast-init() {
 
 # register precmd to show rbenv information on the prompt.
 precmd_rbenv_info() {
-  if type rbenv >/dev/null; then
-    if [[ $(rbenv version-origin) = $HOME/.rbenv/version ]]; then
+  if [[ -n "${RBENV_ROOT-}" ]]; then
+    local rbenv_version_name rbenv_version_origin
+    if [[ -n "${RBENV_VERSION-}" ]]; then
+      rbenv_version_name="$RBENV_VERSION"
+      rbenv_version_origin="\$RBENV_VERSION"
+    else
+      local root
+      if [[ -n "${RBENV_DIR-}" ]]; then
+        root="${RBENV_DIR}"
+      else
+        root="$(pwd)"
+      fi
+      while ! [[ "$root" =~ ^//[^/]*$ ]]; do
+        if [[ -e "${root}/.ruby-version" ]]; then
+          rbenv_version_origin="${root}/.ruby-version"
+        fi
+        if ! [[ -n "$root" ]]; then
+          break
+        fi
+        root="${root%/*}"
+      done
+      if ! [[ -n "${rbenv_version_origin-}" ]]; then
+        rbenv_version_origin="${RBENV_ROOT}/version"
+      fi
+    fi
+    if [[ ${rbenv_version_origin} = ${RBENV_ROOT}/version ]]; then
       rbenv_info_msg_0_=""
     else
-      rbenv_info_msg_0_=" (rb:$(rbenv version-name))"
+      if ! [[ -n "${rbenv_version_name}" ]]; then
+        rbenv_version_name="$(cut -b 1-1024 "${rbenv_version_origin}")"
+      fi
+      rbenv_info_msg_0_=" (rb:${rbenv_version_name})"
     fi
+  else
+    rbenv_info_msg_0_=""
   fi
 }
 add-zsh-hook precmd precmd_rbenv_info
