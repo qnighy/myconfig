@@ -103,3 +103,6 @@
 [submodule "site-lisp/molokai-theme"]
 	path = site-lisp/molokai-theme
 	url = https://github.com/hbin/molokai-theme.git
+[submodule "vim/bundle/vim-ssh-annex"]
+	path = vim/bundle/vim-ssh-annex
+	url = https://github.com/qnighy/vim-ssh-annex.git
