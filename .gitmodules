@@ -27,7 +27,7 @@
 	url = https://github.com/ensime/emacs-scala-mode.git
 [submodule "site-lisp/proofgeneral"]
 	path = site-lisp/proofgeneral
-	url = https://github.com/emacsattic/proofgeneral.git
+	url = https://github.com/ProofGeneral/PG.git
 [submodule "site-lisp/haskell-mode"]
 	path = site-lisp/haskell-mode
 	url = https://github.com/haskell/haskell-mode.git
