@@ -15,7 +15,7 @@
 	url = https://github.com/elzr/vim-json
 [submodule "vim/bundle/rust.vim"]
 	path = vim/bundle/rust.vim
-	url = https://github.com/wting/rust.vim
+	url = https://github.com/rust-lang/rust.vim
 [submodule "vim/bundle/vim-scala"]
 	path = vim/bundle/vim-scala
 	url = https://github.com/derekwyatt/vim-scala
