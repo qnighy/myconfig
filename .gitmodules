@@ -106,3 +106,6 @@
 [submodule "vim/bundle/vim-ssh-annex"]
 	path = vim/bundle/vim-ssh-annex
 	url = https://github.com/qnighy/vim-ssh-annex.git
+[submodule "vim/bundle/autodirmake.vim"]
+	path = vim/bundle/autodirmake.vim
+	url = https://github.com/mopp/autodirmake.vim.git
