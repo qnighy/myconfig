@@ -238,6 +238,9 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=jedi#completions
+if v:version >= 800
+  autocmd FileType rust setlocal omnifunc=lsp#complete
+endif
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
@@ -288,6 +291,20 @@ let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*f
 "    let col = col('.') - 1
 "    return !col || getline('.')[col - 1]  =~ '\s'
 "  endfunction"}}}
+
+" Rust Language Server
+if executable('rls') && v:version >= 800
+    " au User lsp_setup call lsp#register_server({
+    "     \ 'name': 'rls',
+    "     \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+    "     \ 'whitelist': ['rust'],
+    "     \ })
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
 
 " Disable spell-checking in general, but enable for certain filetypes.
 set nospell
