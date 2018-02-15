@@ -109,3 +109,6 @@
 [submodule "vim/bundle/autodirmake.vim"]
 	path = vim/bundle/autodirmake.vim
 	url = https://github.com/mopp/autodirmake.vim.git
+[submodule "vim/bundle/lalrpop.vim"]
+	path = vim/bundle/lalrpop.vim
+	url = https://github.com/qnighy/lalrpop.vim.git
