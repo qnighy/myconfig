@@ -201,6 +201,9 @@ if executable('rls') && v:version >= 800
         \ })
 endif
 
+" Fold blocks by default
+let g:rust_fold = 2
+
 " Disable spell-checking in general, but enable for certain filetypes.
 set nospell
 autocmd FileType markdown,html,tex setlocal spell
