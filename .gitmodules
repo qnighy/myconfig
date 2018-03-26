@@ -91,3 +91,21 @@
 [submodule "vim/bundle/satysfi.vim"]
 	path = vim/bundle/satysfi.vim
 	url = https://github.com/qnighy/satysfi.vim.git
+[submodule "vim/bundle/asyncomplete-necovim.vim"]
+	path = vim/bundle/asyncomplete-necovim.vim
+	url = https://github.com/prabirshrestha/asyncomplete-necovim.vim.git
+[submodule "vim/bundle/neco-vim"]
+	path = vim/bundle/neco-vim
+	url = https://github.com/Shougo/neco-vim.git
+[submodule "vim/bundle/neco-syntax"]
+	path = vim/bundle/neco-syntax
+	url = https://github.com/Shougo/neco-syntax.git
+[submodule "vim/bundle/asyncomplete-necosyntax.vim"]
+	path = vim/bundle/asyncomplete-necosyntax.vim
+	url = https://github.com/prabirshrestha/asyncomplete-necosyntax.vim.git
+[submodule "vim/bundle/asyncomplete-buffer.vim"]
+	path = vim/bundle/asyncomplete-buffer.vim
+	url = https://github.com/prabirshrestha/asyncomplete-buffer.vim.git
+[submodule "vim/bundle/asyncomplete-file.vim"]
+	path = vim/bundle/asyncomplete-file.vim
+	url = https://github.com/prabirshrestha/asyncomplete-file.vim.git
