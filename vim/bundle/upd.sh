@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ue
 
-ignores=("my" "coq.vim" "kappa.vim" "vim-ssh-annex" "lalrpop.vim" "satysfi.vim")
+ignores=("my" "coq.vim" "vim-ssh-annex" "lalrpop.vim" "satysfi.vim")
 for i in *; do
   if [[ ! -f $i/.git ]]; then
     continue
