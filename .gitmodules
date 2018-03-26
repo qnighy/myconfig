@@ -1,6 +1,3 @@
-[submodule "vim/bundle/AsyncCommand"]
-	path = vim/bundle/AsyncCommand
-	url = https://github.com/pydave/AsyncCommand.git
 [submodule "vim/bundle/coq.vim"]
 	path = vim/bundle/coq.vim
 	url = https://github.com/qnighy/coq.vim.git
