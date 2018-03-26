@@ -201,8 +201,23 @@ if executable('rls') && v:version >= 800
         \ })
 endif
 
+" Enable status from LSP
+let g:lsp_signs_enabled = 1
+" Echo diagnostic about the cursor line
+let g:lsp_diagnostics_echo_cursor = 1
+
+" LSP signs
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼'}
+let g:lsp_signs_hint = {'text': 'i'}
+
+" LSP goto definition
+noremap <silent> go :<C-u>LspDefinition<Return>
+
 " Fold blocks by default
 let g:rust_fold = 2
+" Automatically invoke RustFmt on save
+let g:rustfmt_autosave = 1
 
 " Disable spell-checking in general, but enable for certain filetypes.
 set nospell
