@@ -223,6 +223,15 @@ au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#source
     \ 'completor': function('asyncomplete#sources#necovim#completor'),
     \ }))
 
+" Python Language Server
+if executable('pyls') && v:version >= 800
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
 " Rust Language Server
 if executable('rls') && v:version >= 800
     au User lsp_setup call lsp#register_server({
