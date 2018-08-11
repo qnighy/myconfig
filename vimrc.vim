@@ -234,11 +234,13 @@ endif
 
 " Rust Language Server
 if executable('rls') && v:version >= 800
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rls']},
-        \ 'whitelist': ['rust'],
-        \ })
+  if $DISABLE_RLS != 1
+      au User lsp_setup call lsp#register_server({
+          \ 'name': 'rls',
+          \ 'cmd': {server_info->['rls']},
+          \ 'whitelist': ['rust'],
+          \ })
+  end
 endif
 
 " Enable status from LSP
