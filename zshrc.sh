@@ -243,12 +243,16 @@ bindkey -v
 # See http://invisible-island.net/xterm/ctlseqs/ctlseqs.html for xterm escape sequences.
 # SS3 H = Home
 bindkey "^[OH" beginning-of-line
+# CSI H = Home
+bindkey "^[[H" beginning-of-line
 # CSI 1 ~ = Home
 bindkey "^[[1~" beginning-of-line
 # CSI 1 5 D = Ctrl+Left
 bindkey "^[[1;5D" beginning-of-line
 # SS3 F = End
 bindkey "^[OF" end-of-line
+# CSI F = End
+bindkey "^[[F" end-of-line
 # CSI 4 ~ = End
 bindkey "^[[4~" end-of-line
 # CSI 1 5 C = Ctrl+Right
