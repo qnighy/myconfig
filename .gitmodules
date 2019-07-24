@@ -109,3 +109,6 @@
 [submodule "vim/bundle/asyncomplete-file.vim"]
 	path = vim/bundle/asyncomplete-file.vim
 	url = https://github.com/prabirshrestha/asyncomplete-file.vim.git
+[submodule "vim/bundle/vim-terraform"]
+	path = vim/bundle/vim-terraform
+	url = https://github.com/hashivim/vim-terraform.git
