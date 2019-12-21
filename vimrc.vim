@@ -234,7 +234,7 @@ endif
 
 " Rust Language Server
 if executable('rls') && v:version >= 800
-  if $DISABLE_RLS != 1
+  if $ENABLE_RLS == 1
       au User lsp_setup call lsp#register_server({
           \ 'name': 'rls',
           \ 'cmd': {server_info->['rls']},
