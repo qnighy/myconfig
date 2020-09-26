@@ -301,3 +301,6 @@ autocmd FileType python setlocal sts=4 sw=4 et
 
 " Editorconfig configuration
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" Prefer LaTeX
+let g:tex_flavor = "latex"
