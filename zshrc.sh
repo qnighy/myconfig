@@ -377,22 +377,3 @@ done
 if [[ -f /etc/zsh_command_not_found ]]; then
   . /etc/zsh_command_not_found || true
 fi
-
-# Script to autogenerate LaTeX directory from template
-
-beginprogress() {
-  set -ue
-  cp -r "$MYCONFIG_DIR/latex-templates/$1" "$2"
-}
-
-_beginprogress() {
-  local templates
-
-  templates=$(cd "$MYCONFIG_DIR/latex-templates"; ls)
-
-  _arguments \
-      ":Template name:_values template $templates" \
-      ':Directory to create:_path_files -/'
-}
-
-compdef _beginprogress beginprogress
