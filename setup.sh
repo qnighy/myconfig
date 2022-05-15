@@ -29,8 +29,15 @@ if [ ! -e ~/.zprofile ]; then
 ZPROFILE
 fi
 
+# Configure vimrc
+if [ ! -e ~/.zshrc ]; then
+  cat >~/.vimrc <<ZSHRC
+source $basedir_relative/vimrc.vim
+ZSHRC
+fi
+
 # Configure EDITOR
-if ! grep EDITOR ~/.profile; then
+if ! grep EDITOR ~/.profile >/dev/null; then
   if which vim >/dev/null; then
     cat >>~/.profile <<PROFILE
 export EDITOR=vim
