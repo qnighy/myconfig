@@ -6,4 +6,4 @@ source ~/myconfig/zshrc.sh
 # Use this after eval "$(pyenv virtualenv-init - zsh)"
 # pyenv-virtualenv-fast-init
 
-remove_path_duplicates
+typeset -U PATH
