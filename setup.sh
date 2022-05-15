@@ -4,8 +4,10 @@ set -ue
 basedir="$(dirname "$(realpath $0)")"
 basedir_relative="~/$(realpath --relative-to="$HOME" "$basedir")"
 
+# Ensure submodules
 git -C $basedir submodule update --init --recursive
 
+# Configure shell profiles
 if [ ! -e ~/.zshrc ]; then
   cat >~/.zshrc <<ZSHRC
 # ZSH_HOST_EMBLEM=blue
@@ -27,6 +29,16 @@ if [ ! -e ~/.zprofile ]; then
 ZPROFILE
 fi
 
+# Configure EDITOR
+if ! grep EDITOR ~/.profile; then
+  if which vim >/dev/null; then
+    cat >>~/.profile <<PROFILE
+export EDITOR=vim
+PROFILE
+  fi
+fi
+
+# Configure VS Code
 if which code >/dev/null; then
   code --install-extension vscodevim.vim
   code --install-extension GitHub.vscode-pull-request-github
