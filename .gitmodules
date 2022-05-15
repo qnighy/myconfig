@@ -10,18 +10,6 @@
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-[submodule "site-lisp/scala-mode2"]
-	path = site-lisp/scala-mode2
-	url = https://github.com/ensime/emacs-scala-mode.git
-[submodule "site-lisp/proofgeneral"]
-	path = site-lisp/proofgeneral
-	url = https://github.com/ProofGeneral/PG.git
-[submodule "site-lisp/haskell-mode"]
-	path = site-lisp/haskell-mode
-	url = https://github.com/haskell/haskell-mode.git
-[submodule "site-lisp/helm"]
-	path = site-lisp/helm
-	url = https://github.com/emacs-helm/helm.git
 [submodule "vim/bundle/vim-glsl"]
 	path = vim/bundle/vim-glsl
 	url = https://github.com/tikhomirov/vim-glsl.git
@@ -55,15 +43,6 @@
 [submodule "vim/bundle/vimdoc-ja"]
 	path = vim/bundle/vimdoc-ja
 	url = https://github.com/vim-jp/vimdoc-ja.git
-[submodule "site-lisp/js2-mode"]
-	path = site-lisp/js2-mode
-	url = https://github.com/mooz/js2-mode.git
-[submodule "site-lisp/tabbar"]
-	path = site-lisp/tabbar
-	url = https://github.com/dholm/tabbar.git
-[submodule "site-lisp/molokai-theme"]
-	path = site-lisp/molokai-theme
-	url = https://github.com/hbin/molokai-theme.git
 [submodule "vim/bundle/vim-ssh-annex"]
 	path = vim/bundle/vim-ssh-annex
 	url = https://github.com/qnighy/vim-ssh-annex.git
