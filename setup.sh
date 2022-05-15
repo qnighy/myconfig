@@ -4,6 +4,8 @@ set -ue
 basedir="$(dirname "$(realpath $0)")"
 basedir_relative="~/$(realpath --relative-to="$HOME" "$basedir")"
 
+git -C $basedir submodule update --init --recursive
+
 if [ ! -e ~/.zshrc ]; then
   cat >~/.zshrc <<ZSHRC
 # ZSH_HOST_EMBLEM=blue
