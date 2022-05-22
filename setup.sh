@@ -50,6 +50,7 @@ if which code >/dev/null; then
   code --install-extension vscodevim.vim
   code --install-extension GitHub.vscode-pull-request-github
   code --install-extension MS-CEINTL.vscode-language-pack-ja
+  code --install-extension EditorConfig.EditorConfig
 
   # Rust
   code --install-extension rust-lang.rust-analyzer
