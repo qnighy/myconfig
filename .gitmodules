@@ -1,6 +1,3 @@
-[submodule "vim/bundle/coq.vim"]
-	path = vim/bundle/coq.vim
-	url = https://github.com/qnighy/coq.vim.git
 [submodule "vim/bundle/vim-json"]
 	path = vim/bundle/vim-json
 	url = https://github.com/elzr/vim-json
