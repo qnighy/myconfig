@@ -1,10 +1,57 @@
 [log]
 	date = iso8601
-[gpg]
-	program = gpg
-[commit]
-	gpgsign = true
+[init]
+	defaultBranch = main
+
+[core]
+	editor = vim
+	auocrlf = input
+	# Speeds up status by trusting directory mtimes
+	untrackedCache = true
+	# Uses a daemon to monitor changes
+	fsmonitor = true
+
+[column]
+	ui = auto
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+
+[merge]
+	conflictStyle = zdiff3
+
 [push]
 	default = simple
+	autoSetupRemote = true
+	followTags = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+
 [pull]
 	ff = only
+
+[rebase]
+	autoStash = true
+	autoSquash = true
+	updateRefs = true
+
+[rerere]
+	enabled = true
+
+[commit]
+	verbose = false
+
+[help]
+	autocorrect = show
