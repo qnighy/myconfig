@@ -63,12 +63,24 @@ set scrolloff=2
 " Number of command/search history entries to save.
 set history=1000
 
-" Create a backup in $HOME/tmp only when writing.
-set nobackup writebackup backupdir=$HOME/tmp
-" Create a swapfile in $HOME/tmp.
-set swapfile directory=$HOME/tmp
-" Create an undofile in $HOME/tmp.
-set undofile undodir=$HOME/tmp
+" Set up tmpdir in ~/.local/state/vim
+function! s:XdgState(sub) abort
+  let l:dir = expand($XDG_STATE_HOME !=# '' ? '$XDG_STATE_HOME' : '~/.local/state') . '/vim/' . a:sub
+  if !isdirectory(l:dir)
+    call mkdir(l:dir, 'p', 0700)
+  endif
+  return l:dir
+endfunction
+
+" Create a backup in $HOME/.local/state/vim/backup only when writing.
+set nobackup writebackup
+let &backupdir = s:XdgState('backup') . '//'
+" Create a swapfile in $HOME/.local/state/vim/swap.
+set swapfile
+let &directory = s:XdgState('swap') . '//'
+" Create an undofile in $HOME/.local/state/vim/undo.
+set undofile
+let &undodir = s:XdgState('undo') . '//'
 
 " Use highlighted incremental search.
 set incsearch hlsearch
