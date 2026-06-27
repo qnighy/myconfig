@@ -1,0 +1,85 @@
+##### Common #####
+# Common backup-file suffix
+*~
+*.bak
+
+##### Linux #####
+# FUSE
+.fuse_hidden*
+# KDE Dolphin folder settings
+.directory
+# "Move to trash" bin
+.Trash-*
+# NFS temporary files
+.nfs*
+
+##### Windows #####
+# Infamous explorer thumbnail caches
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+# Folder config metadata
+Desktop.ini
+# "Move to trash" bin
+$RECYCLE.BIN/
+# Cygwin/MSYS dumps
+*.stackdump
+
+##### macOS #####
+# Resource forks and metadata
+.DS_Store
+.AppleDouble
+._*
+.AppleDB
+.AppleDesktop
+.apdisk
+# Finder metadata
+.LSOverride
+# Versioning
+.DocumentRevisions-V100
+# Spotlight
+.Spotlight-V100
+# Time Machine
+.com.apple.timemachine.donotpresent
+# file system change detection
+.fseventsd
+# Temporaries
+.TemporaryItems
+Temporary Items
+# Trashes
+.Trashes
+Network Trash Folder
+# Removable media volume icons
+.VolumnIcon.icns
+
+##### Vim/NeoVim #####
+# Swaps
+*.sw?
+# Vim session file
+Session.vim
+Sessionx.vim
+# netrw (filer)
+.netrwhist
+
+##### Emacs #####
+# Autosave
+\#*\#
+# Lock files
+.\#*
+
+##### VS Code #####
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!*.code-workspace
+
+##### JetBrains #####
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
